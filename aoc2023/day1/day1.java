@@ -35,12 +35,9 @@ public class day1 {
                         if (first == -1) {
 
                             first = Integer.parseInt(c.toString());
-                            last = Integer.parseInt(c.toString());
-
-                        } else {
-                            last = Integer.parseInt(c.toString());
-
                         }
+                        last = Integer.parseInt(c.toString());
+
                     }
 
                 }
@@ -59,7 +56,6 @@ public class day1 {
         try {
             String line = br.readLine();
             while (line != null) {
-                System.out.println(line);
 
                 int first = -1;
                 int last = -1;
@@ -83,7 +79,6 @@ public class day1 {
                         last = result;
                     }
                 }
-                System.out.printf("%d%d\n", first, last);
 
                 sum += first * 10 + last;
                 line = br.readLine();
@@ -124,8 +119,6 @@ public class day1 {
             else if (s.substring(i, i + 5).equals("eight"))
                 result = 8;
         }
-
-        System.out.printf("%s %d\n", s, result);
 
         return result;
     }

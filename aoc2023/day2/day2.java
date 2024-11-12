@@ -10,7 +10,7 @@ public class day2 {
                 BufferedReader br = new BufferedReader(file);
                 br.close();
             }catch(Exception e){
-                System.out.println("ERROR: " + e);
+                e.printStackTrace();
             }
         }
 }
