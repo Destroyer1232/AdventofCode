@@ -5,14 +5,17 @@ import java.io.FileReader;
 
 public class day1{
     public static void main(String args[]){
-        System.out.println("Hello World");
         try{
             FileReader input = new FileReader(day1.class.getResource("input.txt").getFile());
             BufferedReader reader = new BufferedReader(input);
             part1(reader);
+            input = new FileReader(day1.class.getResource("input.txt").getFile());
+            reader = new BufferedReader(input);
+            part2(reader);
+            
+            reader.close();
         }catch(Exception e){
-            System.out.println("Error: " + e);
-
+            e.printStackTrace();
         }
 
     
@@ -25,7 +28,6 @@ public class day1{
             int sum = 0;
             String line = reader.readLine();
             while(line != null){
-            System.out.println(line);
             int first = -1;
             int last = -1;
                 for (Character c : line.toCharArray()){
@@ -35,11 +37,9 @@ public class day1{
                                                         
                             first = Integer.parseInt(c.toString());
                             last = Integer.parseInt(c.toString());
-                            System.out.printf("First: %s, Last: %s\n", first, last);
 
                         }else{
                             last = Integer.parseInt(c.toString());
-                            System.out.printf("First: %s, Last: %s\n", first, last);
 
                         }
                     }
@@ -49,8 +49,7 @@ public class day1{
 
                 line = reader.readLine();
             }
-            System.out.println("Sum: " + sum);
-            reader.close();
+            System.out.println("Part 1 Sum: " + sum);
         }catch(Exception e){
             System.out.println("Error: " + e);
         }
@@ -58,46 +57,97 @@ public class day1{
 
 
     public static void part2(BufferedReader br){
+        int sum = 0;
         try{
             String line = br.readLine();
             while(line != null){
                 System.out.println(line);
+                
+                int first = -1;
+                int last = -1;
                 for (int i = 0; i < line.length(); i++) {
                     
+                    Character currChar = line.charAt(i);
+                    if(Character.isDigit(currChar)){
+                        if (first == -1){
+                                                        
+                            first = Integer.parseInt(currChar.toString());
+                            last = Integer.parseInt(currChar.toString());
+
+                        }else{
+                            last = Integer.parseInt(currChar.toString());
+
+                        }
+                    }else{
+                        if(i+5 <= (line.length()-1)){
+                            if(first == -1){
+                                first = stringToInt(line.substring(i, i+5));
+                                last = stringToInt(line.substring(i,i+5));
+                            }
+                            else{
+                                last = stringToInt(line.substring(i,i+5));
+                            }
+                        }if(i+4 <= (line.length()-1)){
+                            if(first == -1){
+                                first = stringToInt(line.substring(i, i+4));
+                                last = stringToInt(line.substring(i,i+4));
+                            }
+                            else{
+                            last = stringToInt(line.substring(i,i+4));
+                            }
+                        }if(i+3 <= (line.length()-1)){
+                            if(first == -1){
+                                first = stringToInt(line.substring(i, i+3));
+                                last = stringToInt(line.substring(i, i+3));
+                            }
+                            else{
+                                last = stringToInt(line.substring(i, i+3));
+                            }
+                        }
+                        
+                        else{
+                            continue;
+                        }
+                    }
+
                 }
+                System.out.printf("%d%d\n",first,last);
+                
+                sum += first *10 +last;
                 line = br.readLine();
             }
-            br.close();
+            System.out.printf("part2 sum = %d", sum);
+            
         }catch(Exception e){
             System.out.println("Error: " + e);
         }
     }
 
     static int stringToInt(String s){
-        int result = 0;
+        int result=0;
         
-        if(s.equals("one")){
-            result = 1;
-        }else if(s.equals("two")){
-            result = 2;
-        }else if(s.equals("three")){
-            result = 3;
-        }else if(s.equals("four")){
-            result = 4;
-        }else if(s.equals("five")){
-            result = 5;
-        }else if(s.equals("six")){
-            result = 6;
-        }else if(s.equals("seven")){
-            result = 7;
-        }else if(s.equals("eight")){
-            result = 8;
-        }else if(s.equals("nine")){
-            result = 9;
+        switch (s.length()) {
+            case 3:
+                if(s.substring(0,3).equals("one")) result = 1;
+                else if(s.substring(0,3).equals("two")) result = 2;
+                else if(s.substring(0,3).equals("six")) result = 6;   
+                break;
+            case 4:
+                if(s.substring(0,4).equals("four")) result = 4;
+                else if(s.substring(0,4).equals("five")) result = 5;
+                else if(s.substring(0,4).equals("nine")) result = 9;
+                break;
+            case 5:
+                if(s.substring(0,5).equals("three")) result = 3;
+                else if(s.substring(0,5).equals("seven")) result = 7;
+                else if(s.substring(0,5).equals("eight")) result = 8;
+                break;
+            default:
+                result = -1;
+                break;
         }
-
-    
-
+        System.out.printf("%s %d\n", s, result);
+        
         return result;
     }
 }
