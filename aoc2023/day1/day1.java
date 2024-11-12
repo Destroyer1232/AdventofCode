@@ -1,4 +1,4 @@
-package aoc2023.dayOne;
+package aoc2023.day1;
 
 import java.io.BufferedReader;
 import java.io.FileReader;

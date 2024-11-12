@@ -1,4 +1,4 @@
-package aoc2023.dayTwo;
+package aoc2023.day2;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -8,6 +8,7 @@ public class day2 {
             try {
                 FileReader file = new FileReader(day2.class.getResource("input.txt").getFile());
                 BufferedReader br = new BufferedReader(file);
+                br.close();
             }catch(Exception e){
                 System.out.println("ERROR: " + e);
             }
