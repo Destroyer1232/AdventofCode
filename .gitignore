@@ -25,6 +25,10 @@ replay_pid*
 
 #inputs
 /*/*/*.txt
-
+*.txt
 .vscode
 *.py
+
+Random
+
+*.exe
